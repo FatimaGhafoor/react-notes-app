@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Note from "./Note";
 
 function App() {
@@ -9,6 +9,22 @@ function App() {
   ]);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+
+const [isLoaded, setIsLoaded] = useState(false);
+
+useEffect(() => {
+  const savedNotes = localStorage.getItem("notes");
+  if (savedNotes) {
+    setNotes(JSON.parse(savedNotes));
+  }
+  setIsLoaded(true); // loading complete
+}, []);
+
+useEffect(() => {
+  if (isLoaded) {  // sirf load hone ke baad save karo
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }
+}, [notes, isLoaded]);
 
   function handleAddNote() {
     const newNote = {
