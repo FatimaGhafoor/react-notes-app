@@ -10,21 +10,22 @@ function App() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-useEffect(() => {
-  const savedNotes = localStorage.getItem("notes");
-  if (savedNotes) {
-    setNotes(JSON.parse(savedNotes));
-  }
-  setIsLoaded(true); // loading complete
-}, []);
+  useEffect(() => {
+    const savedNotes = localStorage.getItem("notes");
+    if (savedNotes) {
+      setNotes(JSON.parse(savedNotes));
+    }
+    setIsLoaded(true); // loading complete
+  }, []);
 
-useEffect(() => {
-  if (isLoaded) {  // sirf load hone ke baad save karo
-    localStorage.setItem("notes", JSON.stringify(notes));
-  }
-}, [notes, isLoaded]);
+  useEffect(() => {
+    if (isLoaded) {
+      // sirf load hone ke baad save karo
+      localStorage.setItem("notes", JSON.stringify(notes));
+    }
+  }, [notes, isLoaded]);
 
   function handleAddNote() {
     const newNote = {
@@ -35,6 +36,9 @@ useEffect(() => {
     setNotes([...notes, newNote]);
     setTitle("");
     setBody("");
+  }
+  function handleDeleteNote(id) {
+    setNotes(notes.filter((note) => note.id !== id));
   }
 
   return (
@@ -54,7 +58,12 @@ useEffect(() => {
 
       <button onClick={handleAddNote}>Add Note</button>
       {notes.map((note) => (
-        <Note key={note.id} title={note.title} body={note.body} />
+        <Note
+          key={note.id}
+          title={note.title}
+          body={note.body}
+          onDelete={() => handleDeleteNote(note.id)}
+        />
       ))}
     </div>
   );
