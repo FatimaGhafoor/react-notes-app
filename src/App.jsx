@@ -9,7 +9,7 @@ function App() {
   ]);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-
+  const [editingId, setEditingId] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -17,28 +17,45 @@ function App() {
     if (savedNotes) {
       setNotes(JSON.parse(savedNotes));
     }
-    setIsLoaded(true); // loading complete
+    setIsLoaded(true);
   }, []);
 
   useEffect(() => {
     if (isLoaded) {
-      // sirf load hone ke baad save karo
       localStorage.setItem("notes", JSON.stringify(notes));
     }
   }, [notes, isLoaded]);
 
   function handleAddNote() {
-    const newNote = {
-      id: Date.now(),
-      title: title,
-      body: body,
-    };
-    setNotes([...notes, newNote]);
+    if (editingId) {
+      const updatedNotes = notes.map((note) => {
+        if (note.id === editingId) {
+          return { ...note, title: title, body: body };
+        }
+        return note;
+      });
+      setNotes(updatedNotes);
+      setEditingId(null);
+    } else {
+      const newNote = {
+        id: Date.now(),
+        title: title,
+        body: body,
+      };
+      setNotes([...notes, newNote]);
+    }
     setTitle("");
     setBody("");
   }
+
   function handleDeleteNote(id) {
     setNotes(notes.filter((note) => note.id !== id));
+  }
+
+  function handleEditNote(note) {
+    setTitle(note.title);
+    setBody(note.body);
+    setEditingId(note.id);
   }
 
   return (
@@ -63,6 +80,7 @@ function App() {
           title={note.title}
           body={note.body}
           onDelete={() => handleDeleteNote(note.id)}
+          onEdit={() => handleEditNote(note)}
         />
       ))}
     </div>
