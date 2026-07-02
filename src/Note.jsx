@@ -1,10 +1,16 @@
 function Note(props) {
   return (
-    <div>
-      <h1>{props.title}</h1>
+    <div className="note-card">
+      <h3>{props.title}</h3>
       <p>{props.body}</p>
-      <button onClick={props.onDelete}>Delete</button>
-      <button onClick={props.onEdit}>Edit</button>
+      <div className="note-buttons">
+        <button className="delete-btn" onClick={props.onDelete}>
+          Delete
+        </button>
+        <button className="edit-btn" onClick={props.onEdit}>
+          Edit
+        </button>
+      </div>
     </div>
   );
 }

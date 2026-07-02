@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Note from "./Note";
+import "./App.css";
 
 function App() {
   const [notes, setNotes] = useState([
@@ -59,32 +60,38 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="app">
       <h1>My Notes</h1>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        placeholder="Write your note..."
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-      />
-
-      <button onClick={handleAddNote}>
-        {editingId ? "Save Changes" : "Add Note"}
-      </button>
-      {notes.map((note) => (
-        <Note
-          key={note.id}
-          title={note.title}
-          body={note.body}
-          onDelete={() => handleDeleteNote(note.id)}
-          onEdit={() => handleEditNote(note)}
+      <div className="note-form">
+        <input
+          className="note-input"
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         />
-      ))}
+        <textarea
+          className="note-textarea"
+          placeholder="Write your note..."
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+        />
+
+        <button className="add-btn" onClick={handleAddNote}>
+          {editingId ? "Save Changes" : "Add Note"}
+        </button>
+      </div>
+      <div className="notes-container">
+        {notes.map((note) => (
+          <Note
+            key={note.id}
+            title={note.title}
+            body={note.body}
+            onDelete={() => handleDeleteNote(note.id)}
+            onEdit={() => handleEditNote(note)}
+          />
+        ))}
+      </div>
     </div>
   );
 }
