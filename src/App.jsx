@@ -73,7 +73,9 @@ function App() {
         onChange={(e) => setBody(e.target.value)}
       />
 
-      <button onClick={handleAddNote}>Add Note</button>
+      <button onClick={handleAddNote}>
+        {editingId ? "Save Changes" : "Add Note"}
+      </button>
       {notes.map((note) => (
         <Note
           key={note.id}
