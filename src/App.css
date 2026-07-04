@@ -139,3 +139,9 @@ h1 {
   gap: 0.5rem;
   margin-top: 0.5rem;
 }
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.85rem;
+  margin-top: -4px;
+}

@@ -12,6 +12,7 @@ function App() {
   const [body, setBody] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const savedNotes = localStorage.getItem("notes");
@@ -28,6 +29,14 @@ function App() {
   }, [notes, isLoaded]);
 
   function handleAddNote() {
+    if (title.trim() === "") {
+      setError("Title cannot be empty.");
+      return;
+    }
+    if (body.trim() === "") {
+      setError("Note body cannot be empty.");
+      return;
+    }
     if (editingId) {
       const updatedNotes = notes.map((note) => {
         if (note.id === editingId) {
@@ -47,6 +56,8 @@ function App() {
     }
     setTitle("");
     setBody("");
+    setError("");
+
   }
 
   function handleDeleteNote(id) {
@@ -70,6 +81,7 @@ function App() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
+        {error && <p className="error-message">{error}</p>}
         <textarea
           className="note-textarea"
           placeholder="Write your note..."
