@@ -79,7 +79,8 @@ h1 {
 }
 
 .note-card {
-  background: #ffffff;  border: 1px solid #9ca3af;
+  background: #ffffff;
+  border: 1px solid #9ca3af;
   border-radius: 8px;
   padding: 1.25rem;
   display: flex;
@@ -91,12 +92,16 @@ h1 {
   font-size: 1.1rem;
   font-weight: 600;
   color: #1f2937;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .note-card p {
   font-size: 0.9rem;
   color: #6b7280;
   flex-grow: 1;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .delete-btn {

@@ -57,7 +57,6 @@ function App() {
     setTitle("");
     setBody("");
     setError("");
-
   }
 
   function handleDeleteNote(id) {
@@ -80,6 +79,7 @@ function App() {
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          maxLength={50}
         />
         {error && <p className="error-message">{error}</p>}
         <textarea
@@ -87,6 +87,7 @@ function App() {
           placeholder="Write your note..."
           value={body}
           onChange={(e) => setBody(e.target.value)}
+          maxLength={200}
         />
 
         <button className="add-btn" onClick={handleAddNote}>
