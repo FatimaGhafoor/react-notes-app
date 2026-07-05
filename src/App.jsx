@@ -69,7 +69,7 @@ function App() {
     setEditingId(note.id);
   }
 
-  function handleCancelEdit(){
+  function handleCancelEdit() {
     setTitle("");
     setBody("");
     setEditingId(null);
@@ -107,15 +107,21 @@ function App() {
         )}
       </div>
       <div className="notes-container">
-        {notes.map((note) => (
-          <Note
-            key={note.id}
-            title={note.title}
-            body={note.body}
-            onDelete={() => handleDeleteNote(note.id)}
-            onEdit={() => handleEditNote(note)}
-          />
-        ))}
+        {notes.length === 0 ? (
+          <div className="empty-state">
+            <p>No notes yet. Add your first note!</p>
+          </div>
+        ) : (
+          notes.map((note) => (
+            <Note
+              key={note.id}
+              title={note.title}
+              body={note.body}
+              onDelete={() => handleDeleteNote(note.id)}
+              onEdit={() => handleEditNote(note)}
+            />
+          ))
+        )}
       </div>
     </div>
   );

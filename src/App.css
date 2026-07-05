@@ -164,3 +164,10 @@ h1 {
 .cancel-btn:hover {
   background-color: #e5e7eb;
 }
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #9ca3af;
+  font-size: 1rem;
+}
