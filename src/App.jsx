@@ -78,7 +78,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1>My Notes</h1>
+      <h1>My Notes {notes.length > 0 && `(${notes.length})`}</h1>
       <div className="note-form">
         <input
           className="note-input"
