@@ -69,6 +69,13 @@ function App() {
     setEditingId(note.id);
   }
 
+  function handleCancelEdit(){
+    setTitle("");
+    setBody("");
+    setEditingId(null);
+    setError("");
+  }
+
   return (
     <div className="app">
       <h1>My Notes</h1>
@@ -93,6 +100,11 @@ function App() {
         <button className="add-btn" onClick={handleAddNote}>
           {editingId ? "Save Changes" : "Add Note"}
         </button>
+        {editingId && (
+          <button className="cancel-btn" onClick={handleCancelEdit}>
+            Cancel
+          </button>
+        )}
       </div>
       <div className="notes-container">
         {notes.map((note) => (
