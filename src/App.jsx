@@ -51,6 +51,11 @@ function App() {
         id: Date.now(),
         title: title,
         body: body,
+        createdAt: new Date().toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        }),
       };
       setNotes([...notes, newNote]);
     }
@@ -117,6 +122,7 @@ function App() {
               key={note.id}
               title={note.title}
               body={note.body}
+              createdAt={note.createdAt}
               onDelete={() => handleDeleteNote(note.id)}
               onEdit={() => handleEditNote(note)}
             />

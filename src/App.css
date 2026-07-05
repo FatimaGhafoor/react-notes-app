@@ -171,3 +171,9 @@ h1 {
   color: #9ca3af;
   font-size: 1rem;
 }
+
+.note-date {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}

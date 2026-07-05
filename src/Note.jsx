@@ -11,6 +11,7 @@ function Note(props) {
           Edit
         </button>
       </div>
+      <span className="note-date">{props.createdAt}</span>
     </div>
   );
 }
