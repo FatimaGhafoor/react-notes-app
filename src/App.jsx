@@ -13,6 +13,7 @@ function App() {
   const [editingId, setEditingId] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const savedNotes = localStorage.getItem("notes");
@@ -81,9 +82,21 @@ function App() {
     setError("");
   }
 
+  const filteredNotes = notes.filter(
+    (note) =>
+      note.title.toLowerCase().includes(search.toLowerCase()) ||
+      note.body.toLowerCase().includes(search.toLowerCase()),
+  );
   return (
     <div className="app">
       <h1>My Notes {notes.length > 0 && `(${notes.length})`}</h1>
+      <input
+        className="search-input"
+        type="text"
+        placeholder="Search notes..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
       <div className="note-form">
         <input
           className="note-input"
@@ -112,12 +125,12 @@ function App() {
         )}
       </div>
       <div className="notes-container">
-        {notes.length === 0 ? (
+        {filteredNotes.length === 0 ? (
           <div className="empty-state">
             <p>No notes yet. Add your first note!</p>
           </div>
         ) : (
-          notes.map((note) => (
+          filteredNotes.map((note) => (
             <Note
               key={note.id}
               title={note.title}
