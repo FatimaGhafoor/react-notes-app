@@ -181,25 +181,15 @@ h1 {
 .search-input {
   width: 100%;
   padding: 0.75rem;
-  margin-bottom: 1.5rem;
   border: 1px solid #9ca3af;
   border-radius: 6px;
   font-size: 1rem;
   color: #1f2937;
-  background-color: #f9fafb;
+  background: #ffffff;
   outline: none;
-  transition:
-    border-color 0.2s ease,
-    background-color 0.2s ease,
-    box-shadow 0.2s ease;
+  margin-bottom: 1rem;
 }
 
 .search-input:focus {
   border-color: #4f46e5;
-  background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-}
-
-.search-input::placeholder {
-  color: #9ca3af;
 }
