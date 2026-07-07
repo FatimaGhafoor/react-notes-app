@@ -6,9 +6,15 @@ A Notes App built with React and Vite. Full CRUD functionality with localStorage
 
 ## Features
 
-- Add notes
-- Edit notes
-- Delete notes
+## Features
+
+- Add, Edit, Delete notes
+- Search/filter notes in real time
+- Form validation — empty fields blocked
+- Character limit — title 50, body 200
+- Timestamp on each note
+- Notes count in header
+- Empty state message
 - Data persists across page refresh
 
 ## Tech Stack
